@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import "./global.css";
+import "./globals.css";
 import QueryProvider from "@/providers/query-provider";
 import ThemeWrapper from "@/providers/theme-provider";
 import { Toaster } from "sonner";
