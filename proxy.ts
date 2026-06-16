@@ -1,13 +1,15 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export default clerkMiddleware(async (auth, req) => {
-  const { userId } = await auth();
+// export default clerkMiddleware(async (auth, req) => {
+//   // const { userId } = await auth();
 
-  if (!userId) {
-    return NextResponse.redirect(process.env.NEXT_PUBLIC_URL!);
-  }
-});
+//   // if (!userId) {
+//   //   return NextResponse.redirect(process.env.NEXT_PUBLIC_URL!);
+//   // }
+// });
+
+export default clerkMiddleware()
 
 export const config = {
   matcher: [
