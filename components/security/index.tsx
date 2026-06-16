@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ChevronRight, CircleUser, ShieldCheck } from "lucide-react";
-import { UserProfile } from "@clerk/nextjs";
+import { useAuth, UserProfile } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { dark } from "@clerk/themes";
+import { buttonVariants } from "../ui/button";
+import Link from "next/link";
 
 const SecuritySection = () => {
+  const {isSignedIn} = useAuth()
   const { resolvedTheme } = useTheme();
   const [openSection, setOpenSection] = useState<null | "manage" | "domains">(
     null,
@@ -67,7 +70,8 @@ const SecuritySection = () => {
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm"
             onClick={() => setOpenSection(null)}
           >
-            <div onClick={(e) => e.stopPropagation()}>
+            {isSignedIn ? (
+              <div onClick={(e) => e.stopPropagation()}>
               <UserProfile
                 appearance={{
                   baseTheme: resolvedTheme === "dark" ? dark : undefined,
@@ -81,6 +85,11 @@ const SecuritySection = () => {
                 }}
               />
             </div>
+            ) : (
+              <Link href={"/sign-in"} className={buttonVariants()}>
+                Sign In
+              </Link>
+            )}
           </div>
         )}
 
