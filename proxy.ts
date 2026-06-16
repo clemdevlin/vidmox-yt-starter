@@ -5,7 +5,7 @@ export default clerkMiddleware(async (auth, req) => {
   const { userId } = await auth();
 
   if (!userId) {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(process.env.NEXT_PUBLIC_URL!);
   }
 });
 
